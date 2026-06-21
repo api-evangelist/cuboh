@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cuboh Integration API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "Authorization",
+        "value": "Token {{cubohToken}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Orders", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Order Creation", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/order", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create a new order for a merchant (Direct API)."
+        },
+        {
+          "info": { "name": "Order List", "type": "http" },
+          "http": { "method": "GET", "url": "https://core.cuboh.net/api/v2/external-integration/order" },
+          "docs": "List orders (Direct API)."
+        },
+        {
+          "info": { "name": "Order", "type": "http" },
+          "http": { "method": "GET", "url": "https://core.cuboh.net/api/v2/external-integration/order/{order_id}" },
+          "docs": "Retrieve a single order by id (Direct API)."
+        },
+        {
+          "info": { "name": "Cancel Order", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/order/{order_id}/cancel", "body": { "type": "json", "data": "{}" } },
+          "docs": "Cancel a single order (Direct API)."
+        },
+        {
+          "info": { "name": "Cancel Group Order", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/order-group/{order_group_id}/cancel", "body": { "type": "json", "data": "{}" } },
+          "docs": "Cancel a group of orders (Direct API)."
+        },
+        {
+          "info": { "name": "Accept Order (Connect)", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/cuboh-connect-order/{order_id}/accept/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Accept an order (Connect API)."
+        },
+        {
+          "info": { "name": "Complete Order (Connect)", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/cuboh-connect-order/{order_id}/complete/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Mark an order complete / ready (Connect API)."
+        },
+        {
+          "info": { "name": "Cancel Order (Connect)", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/cuboh-connect-order/{order_id}/cancel/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Cancel an order (Connect API)."
+        },
+        {
+          "info": { "name": "Refund Order (Connect)", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/cuboh-connect-order/{order_id}/refund/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Refund an order (Connect API)."
+        },
+        {
+          "info": { "name": "Upcharge Order (Connect)", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/cuboh-connect-order/{order_id}/upcharge/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Apply an upcharge to an order (Connect API)."
+        },
+        {
+          "info": { "name": "Get Order Details (Connect)", "type": "http" },
+          "http": { "method": "GET", "url": "https://core.cuboh.net/cuboh-connect-order/{order_id}/details/" },
+          "docs": "Retrieve full order details (Connect API)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Menu", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "New Menu", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create a new menu for a merchant (Connect API)."
+        },
+        {
+          "info": { "name": "Find Menus", "type": "http" },
+          "http": { "method": "GET", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus" },
+          "docs": "List menus for a merchant (Connect API)."
+        },
+        {
+          "info": { "name": "Update Menu", "type": "http" },
+          "http": { "method": "PATCH", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus", "body": { "type": "json", "data": "{}" } },
+          "docs": "Update a merchant menu (Connect API)."
+        },
+        {
+          "info": { "name": "Find Single Menu", "type": "http" },
+          "http": { "method": "GET", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus/{external_menu_id}" },
+          "docs": "Retrieve a single menu by external menu id (Connect API)."
+        },
+        {
+          "info": { "name": "Validate Menu", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/validate/{external_menu_id}", "body": { "type": "json", "data": "{}" } },
+          "docs": "Trigger validation of a merchant menu (Connect API)."
+        },
+        {
+          "info": { "name": "Item Status Update", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/item/status-update", "body": { "type": "json", "data": "{}" } },
+          "docs": "Update item and modifier availability status (Connect API)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Locations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Complete Merchant Integration", "type": "http" },
+          "http": { "method": "POST", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/status", "body": { "type": "json", "data": "{}" } },
+          "docs": "Report that a merchant (location) integration is complete."
+        },
+        {
+          "info": { "name": "Get Merchant Orders", "type": "http" },
+          "http": { "method": "GET", "url": "https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/orders" },
+          "docs": "Retrieve orders for a merchant (location) (Connect API)."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Cuboh
+providerId: cuboh
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- Online Ordering
+- Delivery
+- POS
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Cuboh's public Direct and Connect API documentation does not publish numeric
+  request-rate limits or quotas. It does, however, define partner-facing
+  performance standards and webhook retry behavior. Cuboh requires partner
+  webhook handlers and certain endpoints to respond within target latencies
+  (order, merchant, and menu management webhooks within ~300 ms; Menu GET
+  within ~5000 ms). For outbound webhooks, Cuboh retries on 500, 502, 503,
+  504, and 429 responses using exponential backoff (approximately 1s, 2s, 4s,
+  up to five total attempts). Specific per-partner request-rate ceilings are
+  not documented publicly and are governed by the partner agreement.
+notes: >-
+  No numeric RPM/RPS quotas are published; values below reflect the documented
+  performance standards and retry policy. Reconcile any per-partner request
+  limits directly with Cuboh during onboarding.
+sources:
+- https://docs.cuboh.com/direct
+- https://docs.cuboh.com/connect
+responseCodes:
+  throttled: 429
+limits:
+- name: Order Management Webhook Response Time
+  scope: partner
+  metric: latency_ms
+  limit: '< 300'
+  notes: Partner webhook handler must respond within ~300 ms.
+- name: Merchant Management Webhook Response Time
+  scope: partner
+  metric: latency_ms
+  limit: '< 300'
+  notes: Partner webhook handler must respond within ~300 ms.
+- name: Menu Management Webhook Response Time
+  scope: partner
+  metric: latency_ms
+  limit: '< 300'
+  notes: Partner webhook handler must respond within ~300 ms.
+- name: Menu GET Response Time
+  scope: partner
+  metric: latency_ms
+  limit: '< 5000'
+  notes: Menu GET endpoint must respond within ~5000 ms.
+- name: Request Rate Quota
+  scope: partner
+  metric: requests
+  limit: see partner agreement
+  notes: No numeric request-rate ceiling is published; governed by the partner agreement.
+policies:
+- name: Webhook Retry / Backoff
+  description: >-
+    Cuboh retries webhook delivery on 500, 502, 503, 504, and 429 responses
+    using exponential backoff (~1s, 2s, 4s) up to five total attempts.
+- name: Error Handling Guidance
+  description: >-
+    500/503 - retry with exponential backoff; 400 - do not retry, diagnose;
+    401 - refresh token and retry; 403 - do not retry, contact Cuboh.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

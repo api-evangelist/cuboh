@@ -1,0 +1,201 @@
+{
+  "info": {
+    "name": "Cuboh Integration API",
+    "description": "Partner-gated Cuboh Direct (v2.0) and Connect (v0.1) integration API for restaurant online-ordering: orders, menus, merchant locations, and webhooks. Authenticate with an Authorization header (Token <your token>) issued by Cuboh to approved partners.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization" },
+      { "key": "value", "value": "Token {{cubohToken}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://core.cuboh.net" },
+    { "key": "cubohToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Order Creation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/order", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "order"] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Order List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/order", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "order"] }
+          }
+        },
+        {
+          "name": "Order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/order/:order_id", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "order", ":order_id"], "variable": [{ "key": "order_id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/order/:order_id/cancel", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "order", ":order_id", "cancel"], "variable": [{ "key": "order_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Cancel Group Order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/order-group/:order_group_id/cancel", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "order-group", ":order_group_id", "cancel"], "variable": [{ "key": "order_group_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Accept Order (Connect)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/cuboh-connect-order/:order_id/accept/", "host": ["{{baseUrl}}"], "path": ["cuboh-connect-order", ":order_id", "accept", ""], "variable": [{ "key": "order_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Complete Order (Connect)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/cuboh-connect-order/:order_id/complete/", "host": ["{{baseUrl}}"], "path": ["cuboh-connect-order", ":order_id", "complete", ""], "variable": [{ "key": "order_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Cancel Order (Connect)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/cuboh-connect-order/:order_id/cancel/", "host": ["{{baseUrl}}"], "path": ["cuboh-connect-order", ":order_id", "cancel", ""], "variable": [{ "key": "order_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Refund Order (Connect)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/cuboh-connect-order/:order_id/refund/", "host": ["{{baseUrl}}"], "path": ["cuboh-connect-order", ":order_id", "refund", ""], "variable": [{ "key": "order_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Upcharge Order (Connect)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/cuboh-connect-order/:order_id/upcharge/", "host": ["{{baseUrl}}"], "path": ["cuboh-connect-order", ":order_id", "upcharge", ""], "variable": [{ "key": "order_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Get Order Details (Connect)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/cuboh-connect-order/:order_id/details/", "host": ["{{baseUrl}}"], "path": ["cuboh-connect-order", ":order_id", "details", ""], "variable": [{ "key": "order_id", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Menu",
+      "item": [
+        {
+          "name": "New Menu",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "menus"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Find Menus",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "menus"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update Menu",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "menus"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Find Single Menu",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus/:external_menu_id", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "menus", ":external_menu_id"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }, { "key": "external_menu_id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Validate Menu",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/validate/:external_menu_id", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "validate", ":external_menu_id"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }, { "key": "external_menu_id", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Item Status Update",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/item/status-update", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "item", "status-update"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Complete Merchant Integration",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/status", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "status"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }] },
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }
+          }
+        },
+        {
+          "name": "Get Merchant Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/external-integration/merchant/:external_integration_merchant_uuid/orders", "host": ["{{baseUrl}}"], "path": ["api", "v2", "external-integration", "merchant", ":external_integration_merchant_uuid", "orders"], "variable": [{ "key": "external_integration_merchant_uuid", "value": "" }] }
+          }
+        }
+      ]
+    }
+  ]
+}

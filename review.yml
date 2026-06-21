@@ -1,0 +1,107 @@
+aid: cuboh
+name: Cuboh
+review:
+  question: Does Cuboh expose a publicly available, self-serve API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  apiAvailability: partner-gated
+findings:
+  summary: |
+    Cuboh publishes real REST API documentation for two integration products,
+    the Direct API (v2.0) and the Connect API (v0.1), at
+    https://docs.cuboh.com/direct and https://docs.cuboh.com/connect. The
+    documented surface covers Orders, Menus, Merchant (location) management,
+    and Webhooks, served from a single base host. However, the API is NOT
+    self-serve. There is no public signup, no developer portal that issues
+    keys on demand, and no published per-call pricing. Cuboh provisions an
+    integration token to approved technology partners through an onboarding
+    and QA-certification process (contact integrations@cuboh.com); approved
+    integrations are listed in the Cuboh App Store / Connect Store. The token
+    is unique per partner, valid for ~10 years, and works across all
+    endpoints.
+  apiProducts:
+    - name: Cuboh Direct API
+      version: v2.0
+      docs: https://docs.cuboh.com/direct
+      note: Orders, Merchant status/integration, and Menu management, plus order/merchant/menu webhooks.
+    - name: Cuboh Connect API
+      version: v0.1
+      docs: https://docs.cuboh.com/connect
+      note: Order status actions, Menu CRUD/validation, item status updates, merchant orders, and signed webhooks.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://core.cuboh.net
+      stagingBaseURL: https://core-staging.cuboh.net
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: >-
+        Cuboh delivers events to partner-hosted HTTPS URLs (one each for
+        Orders, Merchant, Menu). Events are signed with an X-Cuboh-Signature
+        HMAC-SHA256 header and retried with exponential backoff on 429/5xx.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket surface is documented.
+  authentication:
+    scheme: apiKey
+    location: header
+    header: Authorization
+    format: 'Token <your token>'
+    note: >-
+      Partner-issued token, unique per partner, ~10-year validity, single token
+      across all endpoints. Provisioned by Cuboh, not self-serve.
+  endpointsConfirmedRest:
+    - POST   https://core.cuboh.net/api/v2/external-integration/order
+    - GET    https://core.cuboh.net/api/v2/external-integration/order
+    - GET    https://core.cuboh.net/api/v2/external-integration/order/{order_id}
+    - POST   https://core.cuboh.net/api/v2/external-integration/order/{order_id}/cancel
+    - POST   https://core.cuboh.net/api/v2/external-integration/order-group/{order_group_id}/cancel
+    - POST   https://core.cuboh.net/cuboh-connect-order/{order_id}/accept/
+    - POST   https://core.cuboh.net/cuboh-connect-order/{order_id}/complete/
+    - POST   https://core.cuboh.net/cuboh-connect-order/{order_id}/cancel/
+    - POST   https://core.cuboh.net/cuboh-connect-order/{order_id}/refund/
+    - POST   https://core.cuboh.net/cuboh-connect-order/{order_id}/upcharge/
+    - GET    https://core.cuboh.net/cuboh-connect-order/{order_id}/details/
+    - POST   https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus
+    - GET    https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus
+    - PATCH  https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus
+    - GET    https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus/{external_menu_id}
+    - POST   https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/validate/{external_menu_id}
+    - GET    https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/validate/{external_menu_id}
+    - POST   https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/item/status-update
+    - POST   https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/status
+    - GET    https://core.cuboh.net/api/v2/external-integration/merchant/{external_integration_merchant_uuid}/orders
+  webhookEvents:
+    - orders.accept / orders.complete / orders.cancel / orders.adjust (Order Actions)
+    - merchant.new / merchant.close (Merchant Integration)
+    - menu management events (Menu Management)
+  notes:
+    githubOrganization: >-
+      No public GitHub organization was found for the Cuboh restaurant-ordering
+      company (the "CuboHub" org on GitHub is an unrelated project), so no
+      GitHubOrganization common property was added.
+    pricing: >-
+      The public pricing page (https://www.cuboh.com/pricing) is for the
+      restaurant SaaS subscription, not API access. API access for partners is
+      not separately priced publicly; sales-led / contact-required terms are
+      reconciled false where unknown.
+sources:
+  - url: https://docs.cuboh.com/direct
+    type: Documentation
+    note: Cuboh Direct API (v2.0) OpenAPI 3.1 document; base host core.cuboh.net, Authorization header auth.
+  - url: https://docs.cuboh.com/connect
+    type: Documentation
+    note: Cuboh Connect API (v0.1) OpenAPI 3.1 document; order actions, menu, merchant, signed webhooks.
+  - url: https://www.cuboh.com/pricing
+    type: Pricing
+    note: Restaurant subscription tiers (Low/Mid/High volume) plus custom Enterprise; not API pricing.
+  - url: https://www.cuboh.com/integrations
+    type: Documentation
+    note: Lists the delivery / online-ordering platforms Cuboh aggregates.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,87 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Cuboh
+providerId: cuboh
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- Online Ordering
+- Delivery
+- POS
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Cuboh spend. Cuboh bills restaurants a flat monthly
+  subscription tiered by online-ordering revenue (Low / Mid / High volume),
+  with custom Enterprise pricing for multi-location clients. This is a flat
+  recurring SaaS charge rather than usage-metered API billing. Cuboh's
+  integration APIs (Direct / Connect) are provided to approved technology
+  partners through a partner program; no public per-call API pricing is
+  published, so there is no usage-metered API cost dimension to model.
+notes: >-
+  Subscription prices are subject to change; verify against the Cuboh pricing
+  page. Partner API commercial terms are not public and must be reconciled
+  directly with Cuboh.
+sources:
+- https://www.cuboh.com/pricing
+- https://docs.cuboh.com/direct
+- https://docs.cuboh.com/connect
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Cuboh
+serviceCategory: Management and Governance
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Cuboh
+  ServiceCategory: Management and Governance
+  ProviderName: Cuboh
+  PublisherName: Cuboh
+  InvoiceIssuerName: Cuboh
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: subscription_fee
+  description: >-
+    Flat monthly subscription charged per restaurant account, tiered by the
+    restaurant's online-ordering revenue band.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - tier
+- name: location_count
+  description: >-
+    Number of restaurant locations under a multi-location account, relevant to
+    Enterprise custom pricing.
+  unit: locations
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track the active subscription tier and any per-location charges against the Cuboh invoice.
+- name: Allocation
+  description: Map the Cuboh subscription to the locations / brands it serves for internal cost allocation.
+- name: Optimization
+  description: Choose the subscription tier that matches actual online-ordering revenue; revisit as volume changes.
+- name: Accountability
+  description: Assign an owner for the Cuboh account and review the tier fit periodically.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

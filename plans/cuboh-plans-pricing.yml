@@ -1,0 +1,151 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Cuboh
+providerId: cuboh
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Restaurant
+- Online Ordering
+- Delivery
+- POS
+- Plans
+description: >-
+  Cuboh's published pricing is for its restaurant online-ordering management
+  product (the dashboard and tablet), not for API access. Plans are tiered by
+  the restaurant's monthly online-ordering revenue: Low-Volume, Mid-Volume,
+  and High-Volume, plus a custom Enterprise option for multi-location clients.
+  All tiers include a personal onboarding specialist, analytics and reporting,
+  unlimited online-ordering platform integrations, one-click integrations,
+  multi-location management, unlimited virtual concepts, and 7-day customer
+  support. Integration API access (Direct / Connect) is separate and is granted
+  to approved technology partners through onboarding and QA certification; no
+  public API price is published.
+notes: >-
+  Prices captured from the Cuboh pricing page (USD; CAD also shown) and are
+  subject to change. Enterprise is contact-sales. API access for partners is
+  not separately priced on the public site; reconcile partner-program terms
+  directly with Cuboh.
+sources:
+- https://www.cuboh.com/pricing
+- https://docs.cuboh.com/direct
+- https://docs.cuboh.com/connect
+plans:
+- id: cuboh-low-volume
+  name: Low-Volume
+  type: subscription
+  description: >-
+    For restaurants new to online ordering with up to $20k/month in
+    online-ordering revenue.
+  entries:
+  - label: Low-Volume Subscription
+    name: low_volume
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $119 USD / month
+    userMultiplied: false
+  elements:
+  - name: Onboarding Specialist
+  - name: Analytics and Reporting
+  - name: Unlimited Online Ordering Platforms
+  - name: One-Click Integrations
+  - name: Multi-Location Management
+  - name: Unlimited Virtual Concepts
+- id: cuboh-mid-volume
+  name: Mid-Volume
+  type: subscription
+  description: >-
+    For restaurants scaling online ordering with $20-30k/month in
+    online-ordering revenue.
+  entries:
+  - label: Mid-Volume Subscription
+    name: mid_volume
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $169 USD / month
+    userMultiplied: false
+  elements:
+  - name: Onboarding Specialist
+  - name: Analytics and Reporting
+  - name: Unlimited Online Ordering Platforms
+  - name: One-Click Integrations
+  - name: Multi-Location Management
+  - name: Unlimited Virtual Concepts
+- id: cuboh-high-volume
+  name: High-Volume
+  type: subscription
+  description: >-
+    For restaurants relying heavily on online ordering with $30k+/month in
+    online-ordering revenue.
+  entries:
+  - label: High-Volume Subscription
+    name: high_volume
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $229 USD / month
+    userMultiplied: false
+  elements:
+  - name: Onboarding Specialist
+  - name: Analytics and Reporting
+  - name: Unlimited Online Ordering Platforms
+  - name: One-Click Integrations
+  - name: Multi-Location Management
+  - name: Unlimited Virtual Concepts
+- id: cuboh-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom pricing for multi-location clients. Contact Cuboh sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Multi-Location Pricing
+- id: cuboh-partner-api
+  name: Integration Partner API
+  type: partner
+  description: >-
+    Direct and Connect integration API access for approved technology
+    partners. Provisioned via onboarding and QA certification rather than
+    self-serve signup; no public price is published.
+  entries:
+  - label: Partner Integration Access
+    name: partner_api
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact integrations@cuboh.com
+    userMultiplied: false
+  elements:
+  - name: Orders API
+  - name: Menu API
+  - name: Merchant Locations API
+  - name: Webhooks
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

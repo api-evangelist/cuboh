@@ -1,0 +1,132 @@
+aid: cuboh
+url: https://raw.githubusercontent.com/api-evangelist/cuboh/refs/heads/main/apis.yml
+name: Cuboh
+kind: company
+description: Cuboh is a restaurant online-ordering management platform that consolidates
+  third-party delivery and pickup orders (DoorDash, Uber Eats, Grubhub, and more)
+  onto a single tablet and into the restaurant POS. For technology partners, Cuboh
+  exposes partner-gated Direct and Connect integration APIs covering orders, menus,
+  merchant locations, and webhooks. API access is provisioned by Cuboh during a
+  partner onboarding and QA-certification process; there is no public self-serve
+  signup.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Restaurant
+- Online Ordering
+- Delivery
+- POS
+- Order Aggregation
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: cuboh:orders
+  name: Cuboh Orders API
+  tags:
+  - Orders
+  - Delivery
+  - Pickup
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.cuboh.com/direct
+  baseURL: https://core.cuboh.net
+  properties:
+  - url: https://docs.cuboh.com/direct
+    type: Documentation
+  - url: https://docs.cuboh.com/connect
+    type: APIReference
+  - url: openapi/cuboh-openapi.yml
+    type: OpenAPI
+  - url: collections/cuboh.postman_collection.json
+    type: PostmanCollection
+  - url: collections/cuboh.opencollection.json
+    type: OpenCollection
+  description: Partner-gated order lifecycle integration. Create orders, list orders,
+    retrieve a single order, and cancel orders or order groups under the Direct API,
+    plus accept, complete, refund, upcharge, and cancel actions under the Connect
+    API. Order events are delivered to partner webhook URLs.
+- aid: cuboh:menu
+  name: Cuboh Menu API
+  tags:
+  - Menu
+  - Catalog
+  - Synchronization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.cuboh.com/direct
+  baseURL: https://core.cuboh.net
+  properties:
+  - url: https://docs.cuboh.com/direct
+    type: Documentation
+  - url: https://docs.cuboh.com/connect
+    type: APIReference
+  - url: openapi/cuboh-openapi.yml
+    type: OpenAPI
+  - url: collections/cuboh.postman_collection.json
+    type: PostmanCollection
+  - url: collections/cuboh.opencollection.json
+    type: OpenCollection
+  description: Partner-gated menu management. Retrieve, push, create, update, and
+    validate merchant menus, and update item and modifier availability status, so
+    that menus stay synchronized between Cuboh and the partner platform.
+- aid: cuboh:locations
+  name: Cuboh Merchant Locations API
+  tags:
+  - Locations
+  - Merchants
+  - Stores
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.cuboh.com/direct
+  baseURL: https://core.cuboh.net
+  properties:
+  - url: https://docs.cuboh.com/direct
+    type: Documentation
+  - url: https://docs.cuboh.com/connect
+    type: APIReference
+  - url: openapi/cuboh-openapi.yml
+    type: OpenAPI
+  - url: collections/cuboh.postman_collection.json
+    type: PostmanCollection
+  - url: collections/cuboh.opencollection.json
+    type: OpenCollection
+  description: Partner-gated merchant (location) integration. Report merchant status,
+    complete a merchant integration, and retrieve orders for a merchant identified
+    by its external integration merchant UUID.
+- aid: cuboh:webhooks
+  name: Cuboh Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.cuboh.com/direct
+  baseURL: https://core.cuboh.net
+  properties:
+  - url: https://docs.cuboh.com/direct
+    type: Documentation
+  - url: https://docs.cuboh.com/connect
+    type: APIReference
+  - url: openapi/cuboh-openapi.yml
+    type: OpenAPI
+  - url: collections/cuboh.postman_collection.json
+    type: PostmanCollection
+  - url: collections/cuboh.opencollection.json
+    type: OpenCollection
+  description: Cuboh sends signed webhook events to partner-hosted URLs for order
+    actions (accept, complete, cancel, adjust), merchant integration and status
+    changes, and menu updates. Each event is signed with an X-Cuboh-Signature
+    HMAC-SHA256 header and retried with exponential backoff on failure.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/getcuboh
+- type: Website
+  url: https://www.cuboh.com/
+- type: Documentation
+  url: https://docs.cuboh.com/direct
+- type: Plans
+  url: plans/cuboh-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/cuboh-rate-limits.yml
+- type: FinOps
+  url: finops/cuboh-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
