@@ -115,6 +115,8 @@ apis:
     changes, and menu updates. Each event is signed with an X-Cuboh-Signature
     HMAC-SHA256 header and retried with exponential backoff on failure.
 common:
+- type: AgenticAccess
+  url: agentic-access/cuboh-agentic-access.yml
 - type: DomainSecurity
   url: security/cuboh-domain-security.yml
 - type: Authentication
