@@ -1,0 +1,185 @@
+openapi: 3.0.1
+info:
+  title: Cuboh Integration Locations Orders API
+  description: 'Partner-gated integration API for Cuboh, a restaurant online-ordering management platform. This document consolidates the publicly documented surface of Cuboh''s Direct API (v2.0) and Connect API (v0.1) covering orders, menus, merchant locations, and webhooks.
+
+
+    Access is not self-serve. Cuboh provisions an integration token to approved technology partners during onboarding and QA certification (contact integrations@cuboh.com). Requests authenticate with an Authorization header in the form `Token <your token>`; tokens are unique per partner and a single token works across all endpoints. Cuboh delivers events to partner-hosted webhook URLs, signed with an X-Cuboh-Signature HMAC-SHA256 header.
+
+
+    Endpoint paths, methods, base URL, and the authentication scheme below are transcribed from Cuboh''s published OpenAPI documents at https://docs.cuboh.com/direct and https://docs.cuboh.com/connect. Request and response schemas are not reproduced here; consult the Cuboh documentation for full payload definitions.'
+  termsOfService: https://www.cuboh.com/
+  contact:
+    name: Cuboh Integrations
+    email: integrations@cuboh.com
+  version: '2.0'
+servers:
+- url: https://core.cuboh.net
+  description: Production server
+- url: https://core-staging.cuboh.net
+  description: Staging / development server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Orders
+  description: Order creation, retrieval, and lifecycle actions.
+paths:
+  /api/v2/external-integration/order:
+    post:
+      tags:
+      - Orders
+      summary: Order Creation
+      description: Create a new order for a merchant (Direct API).
+      responses:
+        '200':
+          description: Order created.
+    get:
+      tags:
+      - Orders
+      summary: Order List
+      description: List orders (Direct API).
+      responses:
+        '200':
+          description: A list of orders.
+  /api/v2/external-integration/order/{order_id}:
+    get:
+      tags:
+      - Orders
+      summary: Order
+      description: Retrieve a single order by its identifier (Direct API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested order.
+  /api/v2/external-integration/order/{order_id}/cancel:
+    post:
+      tags:
+      - Orders
+      summary: Cancel Order
+      description: Cancel a single order (Direct API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order canceled.
+  /api/v2/external-integration/order-group/{order_group_id}/cancel:
+    post:
+      tags:
+      - Orders
+      summary: Cancel Group Order
+      description: Cancel a group of orders (Direct API).
+      parameters:
+      - name: order_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order group canceled.
+  /cuboh-connect-order/{order_id}/accept/:
+    post:
+      tags:
+      - Orders
+      summary: Accept Order
+      description: Accept an order (Connect API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order accepted.
+  /cuboh-connect-order/{order_id}/complete/:
+    post:
+      tags:
+      - Orders
+      summary: Complete Order
+      description: Mark an order as complete / ready (Connect API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order completed.
+  /cuboh-connect-order/{order_id}/cancel/:
+    post:
+      tags:
+      - Orders
+      summary: Cancel Order
+      description: Cancel an order (Connect API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order canceled.
+  /cuboh-connect-order/{order_id}/refund/:
+    post:
+      tags:
+      - Orders
+      summary: Refund Order
+      description: Refund an order (Connect API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order refunded.
+  /cuboh-connect-order/{order_id}/upcharge/:
+    post:
+      tags:
+      - Orders
+      summary: Upcharge Order
+      description: Apply an upcharge to an order (Connect API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order upcharged.
+  /cuboh-connect-order/{order_id}/details/:
+    get:
+      tags:
+      - Orders
+      summary: Get Order Details
+      description: Retrieve full details for an order (Connect API).
+      parameters:
+      - name: order_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order details.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Partner integration token supplied by Cuboh, sent as `Authorization: Token <your token>`. Tokens are unique per partner and a single token authenticates all endpoints.'

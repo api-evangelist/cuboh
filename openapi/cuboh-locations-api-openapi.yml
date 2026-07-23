@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  title: Cuboh Integration Locations API
+  description: 'Partner-gated integration API for Cuboh, a restaurant online-ordering management platform. This document consolidates the publicly documented surface of Cuboh''s Direct API (v2.0) and Connect API (v0.1) covering orders, menus, merchant locations, and webhooks.
+
+
+    Access is not self-serve. Cuboh provisions an integration token to approved technology partners during onboarding and QA certification (contact integrations@cuboh.com). Requests authenticate with an Authorization header in the form `Token <your token>`; tokens are unique per partner and a single token works across all endpoints. Cuboh delivers events to partner-hosted webhook URLs, signed with an X-Cuboh-Signature HMAC-SHA256 header.
+
+
+    Endpoint paths, methods, base URL, and the authentication scheme below are transcribed from Cuboh''s published OpenAPI documents at https://docs.cuboh.com/direct and https://docs.cuboh.com/connect. Request and response schemas are not reproduced here; consult the Cuboh documentation for full payload definitions.'
+  termsOfService: https://www.cuboh.com/
+  contact:
+    name: Cuboh Integrations
+    email: integrations@cuboh.com
+  version: '2.0'
+servers:
+- url: https://core.cuboh.net
+  description: Production server
+- url: https://core-staging.cuboh.net
+  description: Staging / development server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Locations
+  description: Merchant (location) status and integration completion.
+paths:
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/status:
+    post:
+      tags:
+      - Locations
+      summary: Complete Merchant Integration
+      description: Report that a merchant (location) integration is complete. Documented on both the Direct and Connect APIs.
+      parameters:
+      - name: external_integration_merchant_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Merchant integration completed.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/orders:
+    get:
+      tags:
+      - Locations
+      summary: Get Orders
+      description: Retrieve orders for a merchant (location) (Connect API).
+      parameters:
+      - name: external_integration_merchant_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of merchant orders.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Partner integration token supplied by Cuboh, sent as `Authorization: Token <your token>`. Tokens are unique per partner and a single token authenticates all endpoints.'
