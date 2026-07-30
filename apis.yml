@@ -9,7 +9,20 @@ description: Cuboh is a restaurant online-ordering management platform that cons
   merchant locations, and webhooks. API access is provisioned by Cuboh during a
   partner onboarding and QA-certification process; there is no public self-serve
   signup.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cuboh.png
 tags:
 - Restaurant
 - Online Ordering
@@ -20,100 +33,60 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: cuboh:orders
-  name: Cuboh Orders API
-  tags:
-  - Orders
-  - Delivery
-  - Pickup
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: cuboh:cuboh-locations-api
+  name: Cuboh Locations API
+  description: Merchant (location) status and integration completion.
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
-  properties:
-  - url: https://docs.cuboh.com/direct
-    type: Documentation
-  - url: https://docs.cuboh.com/connect
-    type: APIReference
-  - url: openapi/cuboh-openapi.yml
-    type: OpenAPI
-  - url: collections/cuboh.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cuboh.opencollection.json
-    type: OpenCollection
-  description: Partner-gated order lifecycle integration. Create orders, list orders,
-    retrieve a single order, and cancel orders or order groups under the Direct API,
-    plus accept, complete, refund, upcharge, and cancel actions under the Connect
-    API. Order events are delivered to partner webhook URLs.
-- aid: cuboh:menu
-  name: Cuboh Menu API
-  tags:
-  - Menu
-  - Catalog
-  - Synchronization
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.cuboh.com/direct
-  baseURL: https://core.cuboh.net
-  properties:
-  - url: https://docs.cuboh.com/direct
-    type: Documentation
-  - url: https://docs.cuboh.com/connect
-    type: APIReference
-  - url: openapi/cuboh-openapi.yml
-    type: OpenAPI
-  - url: collections/cuboh.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cuboh.opencollection.json
-    type: OpenCollection
-  description: Partner-gated menu management. Retrieve, push, create, update, and
-    validate merchant menus, and update item and modifier availability status, so
-    that menus stay synchronized between Cuboh and the partner platform.
-- aid: cuboh:locations
-  name: Cuboh Merchant Locations API
   tags:
   - Locations
-  - Merchants
-  - Stores
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/cuboh-locations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cuboh.com/direct
+  - type: APIReference
+    url: https://docs.cuboh.com/connect
+  - type: PostmanCollection
+    url: collections/cuboh.postman_collection.json
+  - type: OpenCollection
+    url: collections/cuboh.opencollection.json
+- aid: cuboh:cuboh-menu-api
+  name: Cuboh Menu API
+  description: Menu retrieval, push, creation, update, and validation.
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
-  properties:
-  - url: https://docs.cuboh.com/direct
-    type: Documentation
-  - url: https://docs.cuboh.com/connect
-    type: APIReference
-  - url: openapi/cuboh-openapi.yml
-    type: OpenAPI
-  - url: collections/cuboh.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cuboh.opencollection.json
-    type: OpenCollection
-  description: Partner-gated merchant (location) integration. Report merchant status,
-    complete a merchant integration, and retrieve orders for a merchant identified
-    by its external integration merchant UUID.
-- aid: cuboh:webhooks
-  name: Cuboh Webhooks API
   tags:
-  - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Menu
+  properties:
+  - type: OpenAPI
+    url: openapi/cuboh-menu-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cuboh.com/direct
+  - type: APIReference
+    url: https://docs.cuboh.com/connect
+  - type: PostmanCollection
+    url: collections/cuboh.postman_collection.json
+  - type: OpenCollection
+    url: collections/cuboh.opencollection.json
+- aid: cuboh:cuboh-orders-api
+  name: Cuboh Orders API
+  description: Order creation, retrieval, and lifecycle actions.
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
+  tags:
+  - Orders
   properties:
-  - url: https://docs.cuboh.com/direct
-    type: Documentation
-  - url: https://docs.cuboh.com/connect
-    type: APIReference
-  - url: openapi/cuboh-openapi.yml
-    type: OpenAPI
-  - url: collections/cuboh.postman_collection.json
-    type: PostmanCollection
-  - url: collections/cuboh.opencollection.json
-    type: OpenCollection
-  description: Cuboh sends signed webhook events to partner-hosted URLs for order
-    actions (accept, complete, cancel, adjust), merchant integration and status
-    changes, and menu updates. Each event is signed with an X-Cuboh-Signature
-    HMAC-SHA256 header and retried with exponential backoff on failure.
+  - type: OpenAPI
+    url: openapi/cuboh-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cuboh.com/direct
+  - type: APIReference
+    url: https://docs.cuboh.com/connect
+  - type: PostmanCollection
+    url: collections/cuboh.postman_collection.json
+  - type: OpenCollection
+    url: collections/cuboh.opencollection.json
 common:
 - type: AgenticAccess
   url: agentic-access/cuboh-agentic-access.yml
