@@ -1,0 +1,393 @@
+openapi: 3.0.1
+info:
+  title: Cuboh Integration API
+  description: >-
+    Partner-gated integration API for Cuboh, a restaurant online-ordering
+    management platform. This document consolidates the publicly documented
+    surface of Cuboh's Direct API (v2.0) and Connect API (v0.1) covering
+    orders, menus, merchant locations, and webhooks.
+
+
+    Access is not self-serve. Cuboh provisions an integration token to
+    approved technology partners during onboarding and QA certification
+    (contact integrations@cuboh.com). Requests authenticate with an
+    Authorization header in the form `Token <your token>`; tokens are unique
+    per partner and a single token works across all endpoints. Cuboh delivers
+    events to partner-hosted webhook URLs, signed with an X-Cuboh-Signature
+    HMAC-SHA256 header.
+
+
+    Endpoint paths, methods, base URL, and the authentication scheme below are
+    transcribed from Cuboh's published OpenAPI documents at
+    https://docs.cuboh.com/direct and https://docs.cuboh.com/connect. Request
+    and response schemas are not reproduced here; consult the Cuboh
+    documentation for full payload definitions.
+  termsOfService: https://www.cuboh.com/
+  contact:
+    name: Cuboh Integrations
+    email: integrations@cuboh.com
+  version: '2.0'
+servers:
+  - url: https://core.cuboh.net
+    description: Production server
+  - url: https://core-staging.cuboh.net
+    description: Staging / development server
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Orders
+    description: Order creation, retrieval, and lifecycle actions.
+  - name: Menu
+    description: Menu retrieval, push, creation, update, and validation.
+  - name: Locations
+    description: Merchant (location) status and integration completion.
+  - name: Webhooks
+    description: Signed event notifications delivered to partner-hosted URLs.
+paths:
+  /api/v2/external-integration/order:
+    post:
+      tags:
+        - Orders
+      summary: Order Creation
+      description: Create a new order for a merchant (Direct API).
+      responses:
+        '200':
+          description: Order created.
+    get:
+      tags:
+        - Orders
+      summary: Order List
+      description: List orders (Direct API).
+      responses:
+        '200':
+          description: A list of orders.
+  /api/v2/external-integration/order/{order_id}:
+    get:
+      tags:
+        - Orders
+      summary: Order
+      description: Retrieve a single order by its identifier (Direct API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested order.
+  /api/v2/external-integration/order/{order_id}/cancel:
+    post:
+      tags:
+        - Orders
+      summary: Cancel Order
+      description: Cancel a single order (Direct API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order canceled.
+  /api/v2/external-integration/order-group/{order_group_id}/cancel:
+    post:
+      tags:
+        - Orders
+      summary: Cancel Group Order
+      description: Cancel a group of orders (Direct API).
+      parameters:
+        - name: order_group_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order group canceled.
+  /cuboh-connect-order/{order_id}/accept/:
+    post:
+      tags:
+        - Orders
+      summary: Accept Order
+      description: Accept an order (Connect API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order accepted.
+  /cuboh-connect-order/{order_id}/complete/:
+    post:
+      tags:
+        - Orders
+      summary: Complete Order
+      description: Mark an order as complete / ready (Connect API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order completed.
+  /cuboh-connect-order/{order_id}/cancel/:
+    post:
+      tags:
+        - Orders
+      summary: Cancel Order
+      description: Cancel an order (Connect API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order canceled.
+  /cuboh-connect-order/{order_id}/refund/:
+    post:
+      tags:
+        - Orders
+      summary: Refund Order
+      description: Refund an order (Connect API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order refunded.
+  /cuboh-connect-order/{order_id}/upcharge/:
+    post:
+      tags:
+        - Orders
+      summary: Upcharge Order
+      description: Apply an upcharge to an order (Connect API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order upcharged.
+  /cuboh-connect-order/{order_id}/details/:
+    get:
+      tags:
+        - Orders
+      summary: Get Order Details
+      description: Retrieve full details for an order (Connect API).
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order details.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus:
+    post:
+      tags:
+        - Menu
+      summary: New Menu
+      description: Create a new menu for a merchant (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Menu created.
+    get:
+      tags:
+        - Menu
+      summary: Find Menus
+      description: List menus for a merchant (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of menus.
+    patch:
+      tags:
+        - Menu
+      summary: Update Menu
+      description: Update a merchant menu (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Menu updated.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/menus/{external_menu_id}:
+    get:
+      tags:
+        - Menu
+      summary: Find Single Menu
+      description: Retrieve a single merchant menu by external menu id (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: external_menu_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested menu.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/validate/{external_menu_id}:
+    post:
+      tags:
+        - Menu
+      summary: Validate Menu
+      description: Trigger validation of a merchant menu (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: external_menu_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Validation initiated.
+    get:
+      tags:
+        - Menu
+      summary: Validate Menu (status)
+      description: Retrieve menu validation status (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: external_menu_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Validation status.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/item/status-update:
+    post:
+      tags:
+        - Menu
+      summary: Item Status Update
+      description: Update item and modifier availability status for a merchant (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Item status updated.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/status:
+    post:
+      tags:
+        - Locations
+      summary: Complete Merchant Integration
+      description: >-
+        Report that a merchant (location) integration is complete. Documented
+        on both the Direct and Connect APIs.
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Merchant integration completed.
+  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/orders:
+    get:
+      tags:
+        - Locations
+      summary: Get Orders
+      description: Retrieve orders for a merchant (location) (Connect API).
+      parameters:
+        - name: external_integration_merchant_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of merchant orders.
+webhooks:
+  orderActions:
+    post:
+      tags:
+        - Webhooks
+      summary: Order Actions
+      description: >-
+        Cuboh notifies the partner when a restaurant accepts, completes,
+        cancels, or adjusts an order. Delivered to the partner's configured
+        Orders webhook URL and signed with X-Cuboh-Signature (HMAC-SHA256).
+      responses:
+        '200':
+          description: Event acknowledged with an empty body.
+  merchantIntegration:
+    post:
+      tags:
+        - Webhooks
+      summary: Merchant Integration
+      description: >-
+        Cuboh notifies the partner of new and closed merchant integrations
+        (event_type merchant.new / merchant.close). Delivered to the partner's
+        configured Merchant webhook URL.
+      responses:
+        '200':
+          description: Event acknowledged with an empty body.
+  menuManagement:
+    post:
+      tags:
+        - Webhooks
+      summary: Menu Management
+      description: >-
+        Cuboh notifies the partner of menu retrieval, push, and item/modifier
+        status changes. Delivered to the partner's configured Menu webhook URL.
+      responses:
+        '200':
+          description: Event acknowledged with an empty body.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Partner integration token supplied by Cuboh, sent as
+        `Authorization: Token <your token>`. Tokens are unique per partner and
+        a single token authenticates all endpoints.

@@ -1,0 +1,18 @@
+{
+  "provider": "cuboh",
+  "sources": [
+    "cuboh-locations-api-openapi.yml",
+    "cuboh-menu-api-openapi.yml",
+    "cuboh-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "cuboh-locations-api-openapi.yml",
+    "cuboh-menu-api-openapi.yml",
+    "cuboh-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
