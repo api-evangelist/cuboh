@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cuboh Integration Locations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Complete Merchant Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/status",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Report that a merchant (location) integration is complete. Documented on both the Direct and Connect APIs."
+        },
+        {
+          "info": {
+            "name": "Get Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/orders",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve orders for a merchant (location) (Connect API)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

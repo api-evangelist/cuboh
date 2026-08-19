@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cuboh Integration Locations Menu API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Menu",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find Menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List menus for a merchant (Connect API)."
+        },
+        {
+          "info": {
+            "name": "New Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a new menu for a merchant (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Update Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a merchant menu (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Find Single Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/menus/:external_menu_id",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_menu_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single merchant menu by external menu id (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Validate Menu (status)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/validate/:external_menu_id",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_menu_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve menu validation status (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Validate Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/validate/:external_menu_id",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "external_menu_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger validation of a merchant menu (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Item Status Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/merchant/:external_integration_merchant_uuid/item/status-update",
+            "params": [
+              {
+                "name": "external_integration_merchant_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update item and modifier availability status for a merchant (Connect API)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

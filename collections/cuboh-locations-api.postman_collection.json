@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "f62ca5b9-ae0c-47ee-a3dd-ba1a8a073ca5",
+      "name": "Locations",
+      "description": {
+        "content": "Merchant (location) status and integration completion.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94a2026e-b495-46f0-9659-4ff78baee45b",
+          "name": "Complete Merchant Integration",
+          "request": {
+            "name": "Complete Merchant Integration",
+            "description": {
+              "content": "Report that a merchant (location) integration is complete. Documented on both the Direct and Connect APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "external-integration",
+                "merchant",
+                ":external_integration_merchant_uuid",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_integration_merchant_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fc95ce9-b848-43f5-bd03-0af7451a8cd9",
+              "name": "Merchant integration completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "external-integration",
+                    "merchant",
+                    ":external_integration_merchant_uuid",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_integration_merchant_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5f38f57-2820-4c87-9b30-50986ecceaf9",
+          "name": "Get Orders",
+          "request": {
+            "name": "Get Orders",
+            "description": {
+              "content": "Retrieve orders for a merchant (location) (Connect API).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "external-integration",
+                "merchant",
+                ":external_integration_merchant_uuid",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_integration_merchant_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22e7e8f3-3227-444d-a03f-e876934666db",
+              "name": "A list of merchant orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "external-integration",
+                    "merchant",
+                    ":external_integration_merchant_uuid",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_integration_merchant_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://core.cuboh.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34e318e3-5c26-40df-8e78-985cc6a32725",
+    "name": "Cuboh Integration Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partner-gated integration API for Cuboh, a restaurant online-ordering management platform. This document consolidates the publicly documented surface of Cuboh's Direct API (v2.0) and Connect API (v0.1) covering orders, menus, merchant locations, and webhooks.\n\nAccess is not self-serve. Cuboh provisions an integration token to approved technology partners during onboarding and QA certification (contact integrations@cuboh.com). Requests authenticate with an Authorization header in the form `Token <your token>`; tokens are unique per partner and a single token works across all endpoints. Cuboh delivers events to partner-hosted webhook URLs, signed with an X-Cuboh-Signature HMAC-SHA256 header.\n\nEndpoint paths, methods, base URL, and the authentication scheme below are transcribed from Cuboh's published OpenAPI documents at https://docs.cuboh.com/direct and https://docs.cuboh.com/connect. Request and response schemas are not reproduced here; consult the Cuboh documentation for full payload definitions.\n\nContact Support:\n Name: Cuboh Integrations\n Email: integrations@cuboh.com",
+      "type": "text/plain"
+    }
+  }
+}

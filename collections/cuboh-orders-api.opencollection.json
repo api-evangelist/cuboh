@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cuboh Integration Locations Orders API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Order List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/api/v2/external-integration/order"
+          },
+          "docs": "List orders (Direct API)."
+        },
+        {
+          "info": {
+            "name": "Order Creation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/order"
+          },
+          "docs": "Create a new order for a merchant (Direct API)."
+        },
+        {
+          "info": {
+            "name": "Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/api/v2/external-integration/order/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single order by its identifier (Direct API)."
+        },
+        {
+          "info": {
+            "name": "Cancel Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/order/:order_id/cancel",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a single order (Direct API)."
+        },
+        {
+          "info": {
+            "name": "Cancel Group Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/api/v2/external-integration/order-group/:order_group_id/cancel",
+            "params": [
+              {
+                "name": "order_group_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a group of orders (Direct API)."
+        },
+        {
+          "info": {
+            "name": "Accept Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/cuboh-connect-order/:order_id/accept/",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Accept an order (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Complete Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/cuboh-connect-order/:order_id/complete/",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mark an order as complete / ready (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Cancel Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/cuboh-connect-order/:order_id/cancel/",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an order (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Refund Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/cuboh-connect-order/:order_id/refund/",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund an order (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Upcharge Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://core.cuboh.net/cuboh-connect-order/:order_id/upcharge/",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Apply an upcharge to an order (Connect API)."
+        },
+        {
+          "info": {
+            "name": "Get Order Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://core.cuboh.net/cuboh-connect-order/:order_id/details/",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve full details for an order (Connect API)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
