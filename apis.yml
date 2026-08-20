@@ -27,6 +27,12 @@ tags:
 - Restaurant
 - Online Ordering
 - Delivery
+- Point-of-Sale
+- Order Aggregation
+tags_raw:
+- Restaurant
+- Online Ordering
+- Delivery
 - POS
 - Order Aggregation
 created: '2026-06-21'
@@ -57,6 +63,8 @@ apis:
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
   tags:
+  - Menus
+  tags_raw:
   - Menu
   properties:
   - type: OpenAPI
@@ -75,6 +83,8 @@ apis:
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
