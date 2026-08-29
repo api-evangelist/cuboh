@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Cuboh Integration Locations API
+  title: Cuboh Integration Webhooks API
   description: 'Partner-gated integration API for Cuboh, a restaurant online-ordering management platform. This document consolidates the publicly documented surface of Cuboh''s Direct API (v2.0) and Connect API (v0.1) covering orders, menus, merchant locations, and webhooks.
 
 
@@ -21,39 +21,37 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: Locations
-  description: Merchant (location) status and integration completion.
-paths:
-  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/status:
+- name: Webhooks
+  description: Signed event notifications delivered to partner-hosted URLs.
+paths: {}
+webhooks:
+  orderActions:
     post:
       tags:
-      - Locations
-      summary: Complete Merchant Integration
-      description: Report that a merchant (location) integration is complete. Documented on both the Direct and Connect APIs.
-      parameters:
-      - name: external_integration_merchant_uuid
-        in: path
-        required: true
-        schema:
-          type: string
+      - Webhooks
+      summary: Order Actions
+      description: Cuboh notifies the partner when a restaurant accepts, completes, cancels, or adjusts an order. Delivered to the partner's configured Orders webhook URL and signed with X-Cuboh-Signature (HMAC-SHA256).
       responses:
         '200':
-          description: Merchant integration completed.
-  /api/v2/external-integration/merchant/{external_integration_merchant_uuid}/orders:
-    get:
+          description: Event acknowledged with an empty body.
+  merchantIntegration:
+    post:
       tags:
-      - Locations
-      summary: Get Orders
-      description: Retrieve orders for a merchant (location) (Connect API).
-      parameters:
-      - name: external_integration_merchant_uuid
-        in: path
-        required: true
-        schema:
-          type: string
+      - Webhooks
+      summary: Merchant Integration
+      description: Cuboh notifies the partner of new and closed merchant integrations (event_type merchant.new / merchant.close). Delivered to the partner's configured Merchant webhook URL.
       responses:
         '200':
-          description: A list of merchant orders.
+          description: Event acknowledged with an empty body.
+  menuManagement:
+    post:
+      tags:
+      - Webhooks
+      summary: Menu Management
+      description: Cuboh notifies the partner of menu retrieval, push, and item/modifier status changes. Delivered to the partner's configured Menu webhook URL.
+      responses:
+        '200':
+          description: Event acknowledged with an empty body.
 components:
   securitySchemes:
     ApiKeyAuth:

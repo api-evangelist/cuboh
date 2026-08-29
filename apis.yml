@@ -109,6 +109,16 @@ apis:
     url: collections/cuboh.postman_collection.json
   - type: OpenCollection
     url: collections/cuboh.opencollection.json
+- aid: cuboh:cuboh-webhooks-api
+  name: Cuboh Webhooks API
+  description: Signed event notifications delivered to partner-hosted URLs.
+  humanURL: https://docs.cuboh.com/direct
+  baseURL: https://core.cuboh.net
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/cuboh-webhooks-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/cuboh-agentic-access.yml

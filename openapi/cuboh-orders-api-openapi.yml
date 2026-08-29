@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Cuboh Integration Locations Orders API
+  title: Cuboh Integration Orders API
   description: 'Partner-gated integration API for Cuboh, a restaurant online-ordering management platform. This document consolidates the publicly documented surface of Cuboh''s Direct API (v2.0) and Connect API (v0.1) covering orders, menus, merchant locations, and webhooks.
 
 
