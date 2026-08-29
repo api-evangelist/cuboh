@@ -120,6 +120,9 @@ apis:
   - type: OpenAPI
     url: openapi/cuboh-webhooks-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/cuboh-capability-edges.yml
+  name: Cuboh Business Capability Map
 - type: AgenticAccess
   url: agentic-access/cuboh-agentic-access.yml
 - type: DomainSecurity
