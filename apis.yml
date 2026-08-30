@@ -39,7 +39,7 @@ tags:
 - Restaurant
 - Online Ordering
 - Delivery
-- Point-of-Sale
+- POS
 - Order Aggregation
 tags_raw:
 - Restaurant
@@ -115,6 +115,8 @@ apis:
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
