@@ -58,6 +58,8 @@ apis:
   humanURL: https://docs.cuboh.com/direct
   baseURL: https://core.cuboh.net
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
