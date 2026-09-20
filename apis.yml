@@ -125,6 +125,8 @@ apis:
   - type: OpenAPI
     url: openapi/cuboh-webhooks-api-openapi.yml
 common:
+- type: Pricing
+  url: https://www.cuboh.com/pricing
 - type: CapabilityMap
   url: capabilities/cuboh-capability-edges.yml
   name: Cuboh Business Capability Map
