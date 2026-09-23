@@ -14,11 +14,13 @@
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "cuboh-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0"
+    "cuboh-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "cuboh-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cuboh-menu-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "cuboh-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "cuboh-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cuboh-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
