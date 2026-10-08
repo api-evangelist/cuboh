@@ -58,3 +58,59 @@ plans:
 - name: Enterprise pricing
   price_text: We offer custom pricing for clients with multiple locations.
   period: none
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Low-Volume
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Low-Volume (CAD)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Mid-Volume
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Mid-Volume (CAD)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: High-Volume
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: High-Volume (CAD)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise pricing
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
