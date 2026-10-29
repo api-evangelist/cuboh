@@ -1,4 +1,4 @@
-# Cuboh (cuboh)
+# Cuboh
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,121 +66,122 @@
 
 Cuboh is a restaurant online-ordering management platform that consolidates third-party delivery and pickup orders (DoorDash, Uber Eats, Grubhub, and more) onto a single tablet and into the restaurant POS. For technology partners, Cuboh exposes partner-gated Direct and Connect integration APIs covering orders, menus, merchant locations, and webhooks. API access is provisioned by Cuboh during a partner onboarding and QA-certification process; there is no public self-serve signup.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cuboh/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cuboh/refs/heads/main/apis.yml)
+**Areas:** Restaurant · Online Ordering · Delivery · Point-of-Sale · Order Aggregation
 
-## Tags
+## Cuboh on APIs.io
 
-- Restaurant
-- Online Ordering
-- Delivery
-- POS
-- Order Aggregation
+Everything profiled for Cuboh is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cuboh/](https://apis.io/providers/cuboh/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Cuboh Locations API](https://apis.io/apis/cuboh/cuboh-locations-api/) — Merchant (location) status and integration completion.
+- [Cuboh Menu API](https://apis.io/apis/cuboh/cuboh-menu-api/) — Menu retrieval, push, creation, update, and validation.
+- [Cuboh Orders API](https://apis.io/apis/cuboh/cuboh-orders-api/) — Order creation, retrieval, and lifecycle actions.
+- [Cuboh Webhooks API](https://apis.io/apis/cuboh/cuboh-webhooks-api/) — Signed event notifications delivered to partner-hosted URLs.
 
-## APIs
+### Published properties
 
-### Cuboh Orders API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Partner-gated order lifecycle integration. Create orders, list orders, retrieve a single order, and cancel orders or order groups under the Direct API, plus accept, complete, refund, upcharge, and cancel actions under the Connect API. Order events are delivered to partner webhook URLs.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.cuboh.com/direct](https://docs.cuboh.com/direct)
-- **Base URL:** `https://core.cuboh.net`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Cuboh Agentic Access](https://apis.io/agentic-access/cuboh/cuboh-agentic-access/)
 
-- Orders
-- Delivery
-- Pickup
+#### Collections (4)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.cuboh.com/direct)
-- [API Reference](https://docs.cuboh.com/connect)
-- [OpenAPI](openapi/cuboh-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cuboh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cuboh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Cuboh Integration API](https://apis.io/collections/cuboh/open-cuboh/)
+- [Cuboh Integration Locations API](https://apis.io/collections/cuboh/open-cuboh-locations-api/)
+- [Cuboh Integration Locations Menu API](https://apis.io/collections/cuboh/open-cuboh-menu-api/)
+- [Cuboh Integration Locations Orders API](https://apis.io/collections/cuboh/open-cuboh-orders-api/)
 
-### Cuboh Menu API
+#### Security (2)
 
-Partner-gated menu management. Retrieve, push, create, update, and validate merchant menus, and update item and modifier availability status, so that menus stay synchronized between Cuboh and the partner platform.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.cuboh.com/direct](https://docs.cuboh.com/direct)
-- **Base URL:** `https://core.cuboh.net`
+- [Cuboh Authentication](https://apis.io/security/cuboh/cuboh-authentication/)
+- [Cuboh Domain Security](https://apis.io/security/cuboh/cuboh-domain-security/)
 
-#### Tags
+#### Plans and pricing (2)
 
-- Menu
-- Catalog
-- Synchronization
+Published plans, tiers and prices.
 
-#### Properties
+- [Cuboh Plans Pricing](https://apis.io/plans/cuboh/cuboh-plans-pricing/)
+- [Cuboh Price Estimates](https://apis.io/plans/cuboh/cuboh-price-estimates/)
 
-- [Documentation](https://docs.cuboh.com/direct)
-- [API Reference](https://docs.cuboh.com/connect)
-- [OpenAPI](openapi/cuboh-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cuboh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cuboh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Cuboh Merchant Locations API
+Published request limits.
 
-Partner-gated merchant (location) integration. Report merchant status, complete a merchant integration, and retrieve orders for a merchant identified by its external integration merchant UUID.
+- [Cuboh Rate Limits](https://apis.io/rate-limits/cuboh/cuboh-rate-limits/)
 
-- **Human URL:** [https://docs.cuboh.com/direct](https://docs.cuboh.com/direct)
-- **Base URL:** `https://core.cuboh.net`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Locations
-- Merchants
-- Stores
+- [Cuboh Finops](https://apis.io/finops/cuboh/cuboh-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.cuboh.com/direct)
-- [API Reference](https://docs.cuboh.com/connect)
-- [OpenAPI](openapi/cuboh-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cuboh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cuboh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Cuboh Webhooks API
-
-Cuboh sends signed webhook events to partner-hosted URLs for order actions (accept, complete, cancel, adjust), merchant integration and status changes, and menu updates. Each event is signed with an X-Cuboh-Signature HMAC-SHA256 header and retried with exponential backoff on failure.
-
-- **Human URL:** [https://docs.cuboh.com/direct](https://docs.cuboh.com/direct)
-- **Base URL:** `https://core.cuboh.net`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.cuboh.com/direct)
-- [API Reference](https://docs.cuboh.com/connect)
-- [OpenAPI](openapi/cuboh-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cuboh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cuboh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/getcuboh)
 - [Website](https://www.cuboh.com/)
 - [Documentation](https://docs.cuboh.com/direct)
-- [Plans](plans/cuboh-plans-pricing.yml)
-- [Rate Limits](rate-limits/cuboh-rate-limits.yml)
-- [Fin Ops](finops/cuboh-finops.yml)
+- [Pricing](https://www.cuboh.com/pricing)
+- [Blog](https://www.cuboh.com/blog)
 
-## API Availability
+## API Evangelist rating
 
-Cuboh's Direct (v2.0) and Connect (v0.1) APIs are real and documented, but they are partner-gated. There is no self-serve signup or public key issuance; Cuboh provisions an integration token to approved technology partners through onboarding and QA certification (contact integrations@cuboh.com). The published pricing on cuboh.com is for the restaurant SaaS subscription, not for API access. See [review.yml](review.yml) for the full availability assessment.
+**Kin Score 29.0** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 44.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 15.5 |
+| Access clarity | 42.1 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cuboh/](https://apis.io/providers/cuboh/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cuboh: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cuboh/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
